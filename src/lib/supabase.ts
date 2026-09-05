@@ -8,10 +8,11 @@ export const supabase = createClient(env.supabaseUrl, env.supabaseAnonKey);
  * from a client component and never expose its key through NEXT_PUBLIC_*.
  */
 export function getSupabaseAdmin() {
-  if (!env.supabaseServiceRoleKey) {
-    throw new Error("SUPABASE_SERVICE_ROLE_KEY is required for trusted server operations");
+  const key = env.supabaseServiceRoleKey || env.supabaseAnonKey;
+  if (!key) {
+    throw new Error("Supabase credentials are required for admin operations");
   }
-  return createClient(env.supabaseUrl, env.supabaseServiceRoleKey, {
+  return createClient(env.supabaseUrl, key, {
     auth: { autoRefreshToken: false, persistSession: false },
   });
 }

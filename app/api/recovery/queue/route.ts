@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { queueService } from "@/src/services/queue.service";
 import { logger } from "@/src/lib/logger";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   try {
     const jobs = await queueService.getQueuedJobs();
