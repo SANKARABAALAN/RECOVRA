@@ -37,3 +37,8 @@ Thumbs.db
 .vscode/
 *.swp
 *.swo
+
+# Video Studio Environment (Local Only)
+video/
+/video/
+
